@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>ShadowHire AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top, #1e3a8a, #0f172a 60%);
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.85);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            border-radius: 12px;
+            border: none;
+            background: #0f172a;
+            color: white;
+        }
+
+        .file-upload input {
+            display: none;
+        }
+
+        .file-label {
+            padding: 10px 18px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .file-name {
+            margin-left: 15px;
+            opacity: 0.8;
+        }
+
+        .toggle {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #374151;
+            border-radius: 34px;
+            transition: 0.3s;
+        }
+
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 3px;
+            top: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        input:checked+.slider {
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(24px);
+        }
+
+        button {
+            margin-top: 30px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .chart-wrapper {
+            width: 220px;
+            height: 220px;
+            margin: auto;
+            position: relative;
+        }
+
+        .center-score {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            margin: 6px;
+            font-size: 13px;
+        }
+
+        .psych {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>ShadowHire AI – Hiring Outcome Simulator</h1>
+
+        <div class="card">
+            <h3>Upload Resume & Job Description</h3>
+
+            <div class="file-upload">
+                <label class="file-label" for="resumeInput">Choose Resume</label>
+                <span class="file-name" id="fileName">No file chosen</span>
+                <input type="file" id="resumeInput">
+            </div>
+
+            <textarea id="jd" placeholder="Paste Job Description"></textarea>
+
+            <div class="toggle">
+                Improve DSA
+                <label class="switch">
+                    <input type="checkbox" id="dsa">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="toggle">
+                Add Backend Project
+                <label class="switch">
+                    <input type="checkbox" id="project">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="toggle">
+                Add Internship
+                <label class="switch">
+                    <input type="checkbox" id="intern">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <button onclick="analyze()">Run Simulation</button>
+        </div>
+
+        <div id="results" style="display:none">
+
+            <div class="card">
+                <h3>Hiring Probability</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chart"></canvas>
+                    <div class="center-score" id="scoreText"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Interview Rounds</h3>
+                <div id="rounds"></div>
+            </div>
+
+            <div class="card">
+                <h3>Strong Skills</h3>
+                <div id="strong"></div>
+                <h3 style="margin-top:20px;">Missing Skills</h3>
+                <div id="missing"></div>
+            </div>
+
+            <div class="card">
+                <h3>Career Projection</h3>
+                <div id="career"></div>
+            </div>
+
+            <div class="card">
+                <h3>Recruiter Psychology</h3>
+                <div id="psych" class="psych"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let myChart;
+
+        document.getElementById("resumeInput").addEventListener("change", function () {
+            document.getElementById("fileName").innerText = this.files[0]?.name || "No file chosen";
+        });
+
+        async function analyze() {
+            let file = document.getElementById("resumeInput").files[0];
+            if (!file) { alert("Upload resume first"); return; }
+
+            let formData = new FormData();
+            formData.append("resume", file);
+            formData.append("job_description", document.getElementById("jd").value);
+            formData.append("improve_dsa", document.getElementById("dsa").checked);
+            formData.append("add_project", document.getElementById("project").checked);
+            formData.append("internship", document.getElementById("intern").checked);
+
+            const response = await fetch("http://127.0.0.1:8000/analyze/", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+            document.getElementById("results").style.display = "block";
+
+            let score = parseFloat(data.final_score).toFixed(2);
+            document.getElementById("scoreText").innerText = score + "%";
+
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(document.getElementById("chart"), {
+                type: "doughnut",
+                data: {
+                    datasets: [{
+                        data: [score, 100 - score],
+                        backgroundColor: ["#3b82f6", "#1e293b"],
+                        borderWidth: 0
+                    }]
+                },
+                options: { cutout: "75%", plugins: { legend: { display: false } } }
+            });
+
+            let roundsHTML = "";
+            for (let r in data.rounds) {
+                roundsHTML += `<span class="tag">${r}: ${parseFloat(data.rounds[r]).toFixed(2)}%</span>`;
+            }
+            document.getElementById("rounds").innerHTML = roundsHTML;
+
+            document.getElementById("strong").innerHTML =
+                (data.strong_skills || []).map(s => `<span class="tag">${s}</span>`).join("");
+
+            document.getElementById("missing").innerHTML =
+                (data.missing_skills || []).map(s => `<span class="tag">${s}</span>`).join("");
+
+            document.getElementById("career").innerText = data.career;
+
+            document.getElementById("psych").innerHTML =
+                data.psychology.replace(/\*\*/g, "").replace(/\n/g, "<br><br>");
+        }
+    </script>
+
+</body>
+
+</html>
